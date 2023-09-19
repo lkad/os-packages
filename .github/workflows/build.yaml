@@ -22,18 +22,18 @@ jobs:
           - name: centos-7
             image_name: os-packages-centos7
             dockerfile: build/Dockerfile.os.centos7
-          - name: centos-8
-            image_name: os-packages-centos8
-            dockerfile: build/Dockerfile.os.centos8
+          # - name: centos-8
+          #   image_name: os-packages-centos8
+          #   dockerfile: build/Dockerfile.os.centos8
           - name: fedora-33
             image_name: os-packages-fedora33
             dockerfile: build/Dockerfile.os.fedora33
           - name: fedora-34
             image_name: os-packages-fedora34
             dockerfile: build/Dockerfile.os.fedora34
-          - name: debian-9
-            image_name: os-packages-debian9
-            dockerfile: build/Dockerfile.os.debian9
+          # - name: debian-9
+          #   image_name: os-packages-debian9
+          #   dockerfile: build/Dockerfile.os.debian9
           - name: debian-10
             image_name: os-packages-debian10
             dockerfile: build/Dockerfile.os.debian10
