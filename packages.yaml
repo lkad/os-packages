@@ -37,6 +37,7 @@ common:
   - net-tools
   - rsync
   - chrony
+  - docker-compose
 
 yum:
   - nfs-utils
