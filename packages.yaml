@@ -38,6 +38,7 @@ common:
   - rsync
   - chrony
   - docker-compose
+  - unzip
 
 yum:
   - nfs-utils
