@@ -39,6 +39,7 @@ common:
   - chrony
   - docker-compose
   - unzip
+  - mongodb-clients
 
 yum:
   - nfs-utils
