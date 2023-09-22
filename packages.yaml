@@ -59,8 +59,7 @@ apt:
   - gnupg2
   - netcat
   - apache2-utils
-  - mongodb-clients
-  - postgresql-12
+
 
 centos7:
   - libselinux-python
@@ -72,6 +71,8 @@ centos8:
 
 ubuntu:
   - containerd.io=1.4.9-1
+  - mongodb-clients
+  - postgresql-12
 
 debian9:
   - containerd.io=1.4.3-1
