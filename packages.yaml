@@ -39,8 +39,7 @@ common:
   - chrony
   - docker-compose
   - unzip
-  - mongodb-clients
-  - postgresql-12
+
 
 yum:
   - nfs-utils
@@ -60,6 +59,8 @@ apt:
   - gnupg2
   - netcat
   - apache2-utils
+  - mongodb-clients
+  - postgresql-12
 
 centos7:
   - libselinux-python
