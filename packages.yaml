@@ -40,6 +40,7 @@ common:
   - docker-compose
   - unzip
   - mongodb-clients
+  - postgresql-12
 
 yum:
   - nfs-utils
