@@ -60,6 +60,7 @@ apt:
   - netcat
   - apache2-utils
   - postgresql-12
+  - postgis
 
 centos7:
   - libselinux-python
