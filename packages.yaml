@@ -74,7 +74,7 @@ centos8:
 ubuntu:
   - containerd.io=1.4.9-1
   - mongodb-clients
-  - mongodb-org
+  # - mongodb-org
 
 
 debian9:
