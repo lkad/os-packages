@@ -61,6 +61,7 @@ apt:
   - apache2-utils
   - postgresql-12
   - postgis
+  - openssh-server
 
 centos7:
   - libselinux-python

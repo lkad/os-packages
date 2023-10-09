@@ -12,7 +12,8 @@ RUN ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/') \
 RUN curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
    gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
    --dearmor
-RUN echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/7.0 multiverse" |  tee /etc/apt/sources.list.d/mongodb-org-7.0.list && apt-get update
+RUN  ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/') \
+&& echo "deb [ arch=$ARCH signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/7.0 multiverse" |  tee /etc/apt/sources.list.d/mongodb-org-7.0.list && apt-get update
 WORKDIR /ubuntu/${TARGETARCH}
 COPY packages.yaml .
 
@@ -20,9 +21,10 @@ COPY --from=mikefarah/yq:4.11.1 /usr/bin/yq /usr/bin/yq
 RUN yq eval '.common[],.apt[],.kubespray.common[],.kubespray.apt[],.ubuntu[]' packages.yaml > packages.list \
     && dpkg --get-selections | grep -v deinstall | cut -f1 | cut -d ':' -f1 >> packages.list \
     && sort -u packages.list | xargs apt-get install --reinstall --print-uris | awk -F "'" '{print $2}' | grep -v '^$' | sort -u > packages.urls
-
+RUN cat  packages.urls
 RUN wget -q -x -P ${OS_VERSION} -i packages.urls \
     && dpkg-scanpackages ${OS_VERSION} | gzip -9c > ${OS_VERSION}/Packages.gz
 
-FROM scratch
+FROM nginx
 COPY --from=os-focal /ubuntu /resources/nginx/ubuntu
+RUN rm -rf /usr/share/nginx/html && ln -s /resources/nginx/ /usr/share/nginx/html

@@ -15,6 +15,7 @@ RUN ARCH=$(uname -m) \
     && sort -u packages.list | xargs repotrack -p ${ARCH} \
     && createrepo -d ${ARCH}
 
-FROM scratch
+FROM nginx
 COPY --from=os-centos7 /centos /resources/nginx/centos
 COPY repos/CentOS-All-in-One.repo /resources/nginx/repos/CentOS-7-All-in-One.repo
+RUN rm -rf /usr/share/nginx/html && ln -s /resources/nginx/ /usr/share/nginx/html
